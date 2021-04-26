@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+*.csv
+
+nn_regressor.bin
+
+bin/Debug/
