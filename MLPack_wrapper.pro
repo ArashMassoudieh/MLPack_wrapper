@@ -19,12 +19,14 @@ LIBS += -lgomp -lpthread -larmadillo -lboost_serialization
 SOURCES += \
     ANN_Regress.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mlpack_wrapper.cpp
 
 HEADERS += \
     ANN_Regress.h \
     mainwindow.h \
-    mainwindow.h
+    mainwindow.h \
+    mlpack_wrapper.h
 
 FORMS += \
     mainwindow.ui
