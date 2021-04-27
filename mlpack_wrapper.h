@@ -18,7 +18,7 @@ using namespace mlpack::ann;
 using namespace ens;
 using namespace std;
 
-enum class node_edge_type {Relu, Linear};
+enum class activation_function {ReLU, Linear, LeakyReLU};
 
 class MLPack_Wrapper
 {
@@ -26,11 +26,11 @@ public:
     MLPack_Wrapper();
     bool SetDataSet(arma::mat *data_x, arma::mat *data_y);
     bool Train_One_Epoch();
-    bool Construct_NetWork(vector<int> layer, vector<node_edge_type> types);
+    bool Construct_NetWork(vector<int> layer, vector<activation_function> types);
 
 private:
-    arma::mat *x_data;
-    arma::mat *y_data;
+    arma::mat *x_data = nullptr;
+    arma::mat *y_data = nullptr;
 };
 
 #endif // MLPACK_WRAPPER_H
