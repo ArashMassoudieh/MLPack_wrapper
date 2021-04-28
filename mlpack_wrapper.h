@@ -27,6 +27,7 @@ public:
     bool SetDataSet(arma::mat *data_x, arma::mat *data_y);
     bool Train_One_Epoch();
     bool Construct_NetWork(vector<int> layer, vector<activation_function> types);
+    bool Construct_NetWork(int n_inputs, vector<int> layer, vector<activation_function> types);
 
 private:
     arma::mat *x_data = nullptr;

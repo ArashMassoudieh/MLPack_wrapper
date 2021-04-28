@@ -35,3 +35,23 @@ bool MLPack_Wrapper::Construct_NetWork(vector<int> layer, vector<activation_func
     }
     return true;
 }
+
+bool MLPack_Wrapper::Construct_NetWork(int n_inputs, vector<int> layer, vector<activation_function> types)
+{
+
+    FFN<MeanSquaredError<>, HeInitialization> model;
+    model.Add<Linear<>>(n_inputs, layer[0]);
+    for (unsigned int i=0; i<layer.size(); i++)
+    {
+        if (types[i] == activation_function::LeakyReLU)
+        {
+            model.Add<LeakyReLU<>>();
+        }
+        if (i<layer.size()-1)
+            model.Add<Linear<>>(layer[i], layer[i+1]);
+        else
+            model.Add<Linear<>>(layer[i], 1);
+
+    }
+    return true;
+}

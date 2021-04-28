@@ -11,7 +11,8 @@ CONFIG += c++11
 INCLUDEPATH += include/
 INCLUDEPATH += ../qcustomplot/
 
-LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
+#LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
+LIBS += /usr/local/lib/libmlpack.so
 QMAKE_CXXFLAGS+= -fopenmp
 QMAKE_LFLAGS +=  -fopenmp
 LIBS += -lgomp -lpthread -larmadillo -lboost_serialization
