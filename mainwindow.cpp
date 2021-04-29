@@ -28,7 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
         y_data(0,i)=exp(x_data(0,i))/(1+x_data(0,i)) + exp(x_data(1,i))/(1+x_data(1,i)) + exp(x_data(2,i))/(1+x_data(2,i));
 
     }
+    MLP.SetDataSet(&x_data,&y_data);
     MLP.Construct_NetWork(3,layers,types);
+    MLP.Initiate_Optimizer();
     //ANN_Regress();
 }
 

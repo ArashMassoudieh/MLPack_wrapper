@@ -11,7 +11,7 @@ bool MLPack_Wrapper::SetDataSet(arma::mat *data_x, arma::mat *data_y)
     y_data = data_y;
     return true;
 }
-bool MLPack_Wrapper::Train_One_Epoch()
+bool MLPack_Wrapper::Train_Single_Epoch()
 {
     return true;
 }
@@ -53,5 +53,22 @@ bool MLPack_Wrapper::Construct_NetWork(int n_inputs, vector<int> layer, vector<a
             model.Add<Linear<>>(layer[i], 1);
 
     }
+    return true;
+}
+
+bool MLPack_Wrapper::Initiate_Optimizer()
+{
+    optimizer = ens::Adam(
+    training_parameters.STEP_SIZE,
+    x_data->n_cols, // Batch size. Number of data points that are used in each
+                // iteration.
+    0.9,        // Exponential decay rate for the first moment estimates.
+    0.999,      // Exponential decay rate for the weighted infinity norm
+                // estimates.
+    1e-8, // Value used to initialise the mean squared gradient parameter.
+    x_data->n_cols * training_parameters.EPOCHS, // Max number of iterations.
+    training_parameters.STOP_TOLERANCE,            // Tolerance.
+    true);
+
     return true;
 }
