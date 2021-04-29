@@ -16,14 +16,16 @@ MainWindow::MainWindow(QWidget *parent)
     types.push_back(activation_function::LeakyReLU);
     arma::mat x_data(3,0);
     arma::mat y_data(1,0);
-    for (int i=0; i<100; i++)
+    for (int i=0; i<1000; i++)
     {
+
+        arma::mat x = arma::mat(3,1, arma::fill::randu);
         x_data.resize(3,i+1);
         y_data.resize(1,i+1);
-        x_data(0,i)=i*0.2;
-        x_data(1,i)=i*0.3;
-        x_data(2,i)=-i*0.1;
-        y_data(0,i)=exp(x_data(0,i))/(1+x_data(0,i));
+        x_data(0,i)=x(0,0);
+        x_data(1,i)=x(1,0);
+        x_data(2,i)=x(2,0);
+        y_data(0,i)=exp(x_data(0,i))/(1+x_data(0,i)) + exp(x_data(1,i))/(1+x_data(1,i)) + exp(x_data(2,i))/(1+x_data(2,i));
 
     }
     MLP.Construct_NetWork(3,layers,types);
