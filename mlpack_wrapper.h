@@ -33,7 +33,7 @@ class MLPack_Wrapper
 public:
     MLPack_Wrapper();
     bool SetDataSet(arma::mat *data_x, arma::mat *data_y);
-    bool Initiate_Optimizer();
+    bool Initiate_Optimizer(int ndatacols=0);
     bool Train_Single_Epoch();
     bool Construct_NetWork(vector<int> layer, vector<activation_function> types);
     bool Construct_NetWork(int n_inputs, vector<int> layer, vector<activation_function> types);

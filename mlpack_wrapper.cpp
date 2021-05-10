@@ -56,19 +56,39 @@ bool MLPack_Wrapper::Construct_NetWork(int n_inputs, vector<int> layer, vector<a
     return true;
 }
 
-bool MLPack_Wrapper::Initiate_Optimizer()
+bool MLPack_Wrapper::Initiate_Optimizer(int ndatacols)
 {
-    optimizer = ens::Adam(
-    training_parameters.STEP_SIZE,
-    x_data->n_cols, // Batch size. Number of data points that are used in each
-                // iteration.
-    0.9,        // Exponential decay rate for the first moment estimates.
-    0.999,      // Exponential decay rate for the weighted infinity norm
-                // estimates.
-    1e-8, // Value used to initialise the mean squared gradient parameter.
-    x_data->n_cols * training_parameters.EPOCHS, // Max number of iterations.
-    training_parameters.STOP_TOLERANCE,            // Tolerance.
-    true);
+    if (ndatacols!=0)
+    {
+        {   optimizer = ens::Adam(
+            training_parameters.STEP_SIZE,
+            ndatacols, // Batch size. Number of data points that are used in each
+                        // iteration.
+            0.9,        // Exponential decay rate for the first moment estimates.
+            0.999,      // Exponential decay rate for the weighted infinity norm
+                        // estimates.
+            1e-8, // Value used to initialise the mean squared gradient parameter.
+            ndatacols * training_parameters.EPOCHS, // Max number of iterations.
+            training_parameters.STOP_TOLERANCE,            // Tolerance.
+            true);
+        }
+    }
+    else if (x_data!=nullptr)
+    {
+        if (x_data->n_cols!=0)
+        {   optimizer = ens::Adam(
+            training_parameters.STEP_SIZE,
+            x_data->n_cols, // Batch size. Number of data points that are used in each
+                        // iteration.
+            0.9,        // Exponential decay rate for the first moment estimates.
+            0.999,      // Exponential decay rate for the weighted infinity norm
+                        // estimates.
+            1e-8, // Value used to initialise the mean squared gradient parameter.
+            x_data->n_cols * training_parameters.EPOCHS, // Max number of iterations.
+            training_parameters.STOP_TOLERANCE,            // Tolerance.
+            true);
+        }
+    }
 
     return true;
 }

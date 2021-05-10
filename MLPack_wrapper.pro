@@ -26,7 +26,6 @@ SOURCES += \
 HEADERS += \
     ANN_Regress.h \
     mainwindow.h \
-    mainwindow.h \
     mlpack_wrapper.h
 
 FORMS += \
