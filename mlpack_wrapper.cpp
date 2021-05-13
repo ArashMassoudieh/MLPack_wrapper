@@ -13,6 +13,13 @@ bool MLPack_Wrapper::SetDataSet(arma::mat *data_x, arma::mat *data_y)
 }
 bool MLPack_Wrapper::Train_Single_Epoch()
 {
+    //model.Train(*x_data,
+    //            *y_data,
+    //            optimizer,
+    //            ens::PrintLoss(),
+    //            ens::ProgressBar(),
+    //            ens::EarlyStopAtMinLoss(20));
+    model.Train(*x_data, *y_data);
     return true;
 }
 bool MLPack_Wrapper::Construct_NetWork(vector<int> layer, vector<activation_function> types)
@@ -39,7 +46,6 @@ bool MLPack_Wrapper::Construct_NetWork(vector<int> layer, vector<activation_func
 bool MLPack_Wrapper::Construct_NetWork(int n_inputs, vector<int> layer, vector<activation_function> types)
 {
 
-    FFN<MeanSquaredError<>, HeInitialization> model;
     model.Add<Linear<>>(n_inputs, layer[0]);
     for (unsigned int i=0; i<layer.size(); i++)
     {
@@ -54,6 +60,14 @@ bool MLPack_Wrapper::Construct_NetWork(int n_inputs, vector<int> layer, vector<a
 
     }
     return true;
+}
+
+arma::mat MLPack_Wrapper::Predict(arma::mat *data_x)
+{
+
+    arma::mat predOut;
+    model.Predict(*data_x, predOut);
+    return predOut;
 }
 
 bool MLPack_Wrapper::Initiate_Optimizer(int ndatacols)

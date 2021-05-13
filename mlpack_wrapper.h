@@ -37,12 +37,15 @@ public:
     bool Train_Single_Epoch();
     bool Construct_NetWork(vector<int> layer, vector<activation_function> types);
     bool Construct_NetWork(int n_inputs, vector<int> layer, vector<activation_function> types);
+    arma::mat Predict(arma::mat *data_x);
+    FFN<MeanSquaredError<>> &Model() {return model;}
 
 private:
     arma::mat *x_data = nullptr;
     arma::mat *y_data = nullptr;
     ens::Adam optimizer;
     meta_parameters training_parameters;
+    FFN<MeanSquaredError<>> model;
 };
 
 #endif // MLPACK_WRAPPER_H
