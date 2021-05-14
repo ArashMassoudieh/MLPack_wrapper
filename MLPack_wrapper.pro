@@ -10,9 +10,9 @@ CONFIG += c++17
 
 INCLUDEPATH += include/
 INCLUDEPATH += /home/arash/Projects/qcustomplot/
-INCLUDEPATH += /mnt/3rd900/Projects/Utility_Classes/
-LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
-#LIBS += /usr/local/lib/libmlpack.so
+INCLUDEPATH += ../Utility_Classes/
+#LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
+LIBS += /usr/local/lib/libmlpack.so
 QMAKE_CXXFLAGS+= -fopenmp
 QMAKE_LFLAGS +=  -fopenmp
 LIBS += -lgomp -lpthread -larmadillo -lboost_serialization

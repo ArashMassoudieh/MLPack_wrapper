@@ -7,6 +7,7 @@
 #include <fstream>
 #include <cmath>
 #include <sstream>
+#include "armadillo"
 
 #define SMALLNUMBER 1e-23
 
@@ -606,5 +607,9 @@ string GetOnlyFileName(const string &fullfilename)
 
 }
 
+arma::mat subset(const arma::mat &matrix, int n)
+{
+    return matrix.submat(0,0,matrix.n_rows,n);
+}
 
 #endif // UTILITIES_H

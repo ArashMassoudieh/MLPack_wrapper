@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     MLP.SetDataSet(&x_data,&y_data);
     MLP.Construct_NetWork(3,layers,types);
     MLP.Initiate_Optimizer();
-    for (unsigned int i=0; i<50; i++)
+    for (unsigned int i=0; i<1; i++)
     {   MLP.Train_Single_Epoch();
 
         arma::mat predOut = MLP.Predict(&x_data);
