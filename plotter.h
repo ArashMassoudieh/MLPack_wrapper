@@ -26,7 +26,8 @@ public:
     explicit Plotter(QWidget *parent = nullptr);
     ~Plotter();
     bool PlotData(CBTC& BTC);
-    bool AddData(CBTC& BTC);
+    bool AddData(CBTC& BTC, const QCPScatterStyle::ScatterShape &symbol = QCPScatterStyle::ScatterShape::ssNone);
+    bool AddAgreementLine();
     void SetYAxisTitle(const QString& s);
 private:
     Ui::Plotter *ui;

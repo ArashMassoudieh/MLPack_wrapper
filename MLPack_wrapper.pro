@@ -10,7 +10,7 @@ CONFIG += c++17
 
 INCLUDEPATH += include/
 INCLUDEPATH += /home/arash/Projects/qcustomplot/
-INCLUDEPATH += /mnt/3rd900/Projects/Utility_Classes/
+INCLUDEPATH += /mnt/3rd900/Projects/Utilities/
 LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
 #LIBS += /usr/local/lib/libmlpack.so
 QMAKE_CXXFLAGS+= -fopenmp
@@ -19,16 +19,17 @@ LIBS += -lgomp -lpthread -larmadillo -lboost_serialization
 
 SOURCES += \
     ../../../../home/arash/Projects/qcustomplot/qcustomplot.cpp \
-    ../Utility_Classes/BTC.cpp \
-    ../Utility_Classes/BTCSet.cpp \
-    ../Utility_Classes/DistributionNUnif.cpp \
-    ../Utility_Classes/Matrix.cpp \
-    ../Utility_Classes/Matrix_arma.cpp \
-    ../Utility_Classes/NormalDist.cpp \
-    ../Utility_Classes/QuickSort.cpp \
-    ../Utility_Classes/Vector.cpp \
-    ../Utility_Classes/Vector_arma.cpp \
-    ANN_Regress.cpp \
+    ../Utilities/BTC.cpp \
+    ../Utilities/BTCSet.cpp \
+    ../Utilities/DistributionNUnif.cpp \
+    ../Utilities/Matrix.cpp \
+    ../Utilities/Matrix_arma.cpp \
+    ../Utilities/Matrix_arma_sp.cpp \
+    ../Utilities/NormalDist.cpp \
+    ../Utilities/QuickSort.cpp \
+    ../Utilities/Utilities.cpp \
+    ../Utilities/Vector.cpp \
+    ../Utilities/Vector_arma.cpp \
     customplotwidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -37,16 +38,16 @@ SOURCES += \
 
 HEADERS += \
     ../../../../home/arash/Projects/qcustomplot/qcustomplot.h \
-    ../Utility_Classes/BTC.h \
-    ../Utility_Classes/BTCSet.h \
-    ../Utility_Classes/Matrix.h \
-    ../Utility_Classes/Matrix_arma.h \
-    ../Utility_Classes/NormalDist.h \
-    ../Utility_Classes/QuickSort.h \
-    ../Utility_Classes/Vector.h \
-    ../Utility_Classes/Vector_arma.h \
-    ANN_Regress.h \
-    Utilities.h \
+    ../Utilities/BTC.h \
+    ../Utilities/BTCSet.h \
+    ../Utilities/Matrix.h \
+    ../Utilities/Matrix_arma.h \
+    ../Utilities/Matrix_arma_sp.h \
+    ../Utilities/NormalDist.h \
+    ../Utilities/QuickSort.h \
+    ../Utilities/Utilities.h \
+    ../Utilities/Vector.h \
+    ../Utilities/Vector_arma.h \
     customplotwidget.h \
     mainwindow.h \
     mlpack_wrapper.h \

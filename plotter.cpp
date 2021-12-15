@@ -79,12 +79,12 @@ bool Plotter::PlotData(CBTC& BTC)
 
 }
 
-bool Plotter::AddData(CBTC& BTC)
+bool Plotter::AddData(CBTC& BTC, const QCPScatterStyle::ScatterShape &symbol)
 {
     plot->legend->setVisible(showlegend);
-    maxx = max(BTC.t[0],maxx);
+    maxx = max(BTC.maxt(),maxx);
     maxy = max(BTC.maxC(),maxy);
-    minx = min(BTC.t[BTC.n-1],minx);
+    minx = min(BTC.mint(),minx);
     miny = min(BTC.minC(),miny);
     qDebug() << maxx << "," << minx << "," << miny << "," << maxy;
     QVector<double> x, y; // initialize with entries 0..100
@@ -97,6 +97,8 @@ bool Plotter::AddData(CBTC& BTC)
     plot->addGraph();
     plot->graph(plot->graphCount()-1)->setName(QString::fromStdString(BTC.name));
     plot->graph(plot->graphCount()-1)->setData(x, y);
+    if (symbol!=QCPScatterStyle::ssNone) plot->graph(plot->graphCount()-1)->setLineStyle(QCPGraph::lsNone);
+    plot->graph(plot->graphCount()-1)->setScatterStyle(QCPScatterStyle(symbol, Qt::red, Qt::white, 7));
     plot->graph(plot->graphCount()-1)->setPen(QPen(colours[plot->graphCount()%10]));
     // give the axes some labels:
     plot->xAxis->setLabel("t");
@@ -104,6 +106,35 @@ bool Plotter::AddData(CBTC& BTC)
     // set axes ranges, so we see all data:
     plot->xAxis->setRange(minx, maxx);
     plot->yAxis->setRange(miny, maxy);
+    plot->replot();
+
+    return true;
+
+}
+
+bool Plotter::AddAgreementLine()
+{
+    plot->legend->setVisible(showlegend);
+
+    QVector<double> x, y; // initialize with entries 0..100
+
+
+    x.push_back(minx);
+    y.push_back(minx);
+    x.push_back(maxx);
+    y.push_back(maxx);
+
+
+    // create graph and assign data to it:
+    plot->addGraph();
+
+    plot->graph(plot->graphCount()-1)->setData(x, y);
+    plot->graph(plot->graphCount()-1)->setPen(QPen(colours[plot->graphCount()%10]));
+    // give the axes some labels:
+    plot->xAxis->setLabel("t");
+    plot->yAxis->setLabel("value");
+    // set axes ranges, so we see all data:
+
     plot->replot();
 
     return true;

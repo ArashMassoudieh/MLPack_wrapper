@@ -11,6 +11,7 @@
 #include <mlpack/methods/ann/init_rules/he_init.hpp>
 #include <ensmallen.hpp>
 #include <vector>
+#include "BTC.h"
 
 
 using namespace mlpack;
@@ -47,5 +48,8 @@ private:
     meta_parameters training_parameters;
     FFN<MeanSquaredError<>> model;
 };
+
+double MSE(CTimeSeries &y_data, CTimeSeries &y_pred);
+double MSE(arma::mat &y_data, arma::mat &y_pred);
 
 #endif // MLPACK_WRAPPER_H

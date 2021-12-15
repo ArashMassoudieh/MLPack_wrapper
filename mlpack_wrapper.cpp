@@ -106,3 +106,13 @@ bool MLPack_Wrapper::Initiate_Optimizer(int ndatacols)
 
     return true;
 }
+
+double MSE(CTimeSeries &y_data, CTimeSeries &y_pred)
+{
+    return norm2(y_data-y_pred)/y_data.n;
+}
+
+double MSE(arma::mat &y_data, arma::mat &y_pred)
+{
+    return metric::SquaredEuclideanDistance::Evaluate(y_data, y_pred) / (y_data.n_elem);
+}
