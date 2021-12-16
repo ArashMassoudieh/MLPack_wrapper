@@ -9,10 +9,10 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 INCLUDEPATH += include/
-INCLUDEPATH += /home/arash/Projects/qcustomplot/
-INCLUDEPATH += /mnt/3rd900/Projects/Utilities/
-LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
-#LIBS += /usr/local/lib/libmlpack.so
+INCLUDEPATH += ../qcustomplot/
+INCLUDEPATH += ../Utilities/
+#LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
+LIBS += /usr/local/lib/libmlpack.so
 QMAKE_CXXFLAGS+= -fopenmp
 QMAKE_LFLAGS +=  -fopenmp
 LIBS += -lgomp -lpthread -larmadillo -lboost_serialization
@@ -33,7 +33,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mlpack_wrapper.cpp \
-    plotter.cpp
+    plotter.cpp \
+    testfunc.cpp
 
 HEADERS += \
     ../../../../home/arash/Projects/qcustomplot/qcustomplot.h \
@@ -52,7 +53,8 @@ HEADERS += \
     customplotwidget.h \
     mainwindow.h \
     mlpack_wrapper.h \
-    plotter.h
+    plotter.h \
+    testfunc.h
 
 FORMS += \
     customplotwidget.ui \

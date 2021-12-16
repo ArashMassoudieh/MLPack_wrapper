@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "mlpack_wrapper.h"
 #include "plotter.h"
+#include "testfunc.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     MLP.SetDataSet(&x_data,&y_data);
     MLP.Construct_NetWork(3,layers,types);
     MLP.Initiate_Optimizer();
+    testfunc test_func;
+    test_func.function_type = func_type::sinsin ;
     for (int k=0; k<10; k++)
     {   cout<<"k="<<k<<endl;
         for (int i=0; i<100; i++)
@@ -33,7 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
             x_data(0,i+k*100)=(x(0,0)*0.1+double(k)/100-0.5)*3;
             x_data(1,i+k*100)=(x(1,0)-0.5)*3;
             x_data(2,i+k*100)=(x(2,0)-0.5)*3;
-            y_data(0,i+k*100)=(exp(x_data(0,i+k*100))/(1+exp(x_data(0,i+k*100))) + exp(x_data(1,i+k*100))/(1+exp(x_data(1,i+k*100))) + exp(x_data(2,i+k*100))/(1+exp(x_data(2,i+k*100))))/3.0;
+            y_data(0,i+k*100) = test_func.func(x_data.col(i+k*100));
+            //y_data(0,i+k*100)=(exp(x_data(0,i+k*100))/(1+exp(x_data(0,i+k*100))) + exp(x_data(1,i+k*100))/(1+exp(x_data(1,i+k*100))) + exp(x_data(2,i+k*100))/(1+exp(x_data(2,i+k*100))))/3.0;
 
         }
 
