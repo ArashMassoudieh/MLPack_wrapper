@@ -49,7 +49,7 @@ private:
     FFN<MeanSquaredError<>> model;
 };
 
-double MSE(CTimeSeries &y_data, CTimeSeries &y_pred);
+double MSE(CTimeSeries<double> &y_data, CTimeSeries<double> &y_pred);
 double MSE(arma::mat &y_data, arma::mat &y_pred);
 
 #endif // MLPACK_WRAPPER_H

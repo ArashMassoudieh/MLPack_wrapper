@@ -45,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
             bool saved = data::Save("data.csv", y_data, true);
             saved = data::Save("results.csv", predOut, true);
             data::Save("model.xml", "model", MLP.Model(), false);
-            CTimeSeries modelvspred(y_data,predOut);
+            CTimeSeries<double> modelvspred(y_data,predOut);
 
             Plotter *plt = new Plotter(this);
             plt->AddData(modelvspred, QCPScatterStyle::ScatterShape::ssCircle);

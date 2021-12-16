@@ -20,8 +20,8 @@ class CustomPlotWidget : public QWidget
 public:
     explicit CustomPlotWidget(QWidget *parent = nullptr);
     ~CustomPlotWidget();
-    bool PlotData(CBTC& BTC);
-    bool AddData(CBTC& BTC);
+    bool PlotData(CTimeSeries<double>& BTC);
+    bool AddData(CTimeSeries<double>& BTC);
     void SetYAxisTitle(const QString& s);
     QCustomPlot *Plot() {return plot;}
 private:

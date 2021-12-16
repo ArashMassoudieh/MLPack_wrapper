@@ -44,23 +44,23 @@ Plotter::~Plotter()
 
 
 
-bool Plotter::PlotData(CBTC& BTC)
+bool Plotter::PlotData(CTimeSeries<double>& BTC)
 {
     minx=1e12;
     maxx=-1e12;
     miny=1e12;
     maxy=-1e12;
-    maxx = max(BTC.t[0],maxx);
+    maxx = max(BTC.GetT(0),maxx);
     maxy = max(BTC.maxC(),maxy);
-    minx = min(BTC.t[BTC.n-1],minx);
+    minx = min(BTC.mint(),minx);
     miny = min(BTC.minC(),miny);
     plot->legend->setVisible(showlegend);
     plot->clearGraphs();
     QVector<double> x, y; // initialize with entries 0..100
     for (int i=0; i<BTC.n; ++i)
     {
-      x.push_back(BTC.t[i]);
-      y.push_back(BTC.C[i]);
+      x.push_back(BTC.GetT(i));
+      y.push_back(BTC.GetC(i));
     }
     // create graph and assign data to it:
     plot->addGraph();
@@ -71,7 +71,7 @@ bool Plotter::PlotData(CBTC& BTC)
     plot->xAxis->setLabel("t");
     plot->yAxis->setLabel("value");
     // set axes ranges, so we see all data:
-    plot->xAxis->setRange(BTC.t[0], BTC.t[BTC.n-1]);
+    plot->xAxis->setRange(BTC.GetT(0), BTC.GetT(BTC.n-1));
     plot->yAxis->setRange(BTC.minC()-0.001, BTC.maxC()+0.001);
     plot->replot();
 
@@ -79,7 +79,7 @@ bool Plotter::PlotData(CBTC& BTC)
 
 }
 
-bool Plotter::AddData(CBTC& BTC, const QCPScatterStyle::ScatterShape &symbol)
+bool Plotter::AddData(CTimeSeries<double>& BTC, const QCPScatterStyle::ScatterShape &symbol)
 {
     plot->legend->setVisible(showlegend);
     maxx = max(BTC.maxt(),maxx);
@@ -90,8 +90,8 @@ bool Plotter::AddData(CBTC& BTC, const QCPScatterStyle::ScatterShape &symbol)
     QVector<double> x, y; // initialize with entries 0..100
     for (int i=0; i<BTC.n; ++i)
     {
-      x.push_back(BTC.t[i]);
-      y.push_back(BTC.C[i]);
+      x.push_back(BTC.GetT(i));
+      y.push_back(BTC.GetC(i));
     }
     // create graph and assign data to it:
     plot->addGraph();

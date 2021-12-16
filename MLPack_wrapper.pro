@@ -16,11 +16,10 @@ LIBS += /usr/lib/x86_64-linux-gnu/libmlpack.so
 QMAKE_CXXFLAGS+= -fopenmp
 QMAKE_LFLAGS +=  -fopenmp
 LIBS += -lgomp -lpthread -larmadillo -lboost_serialization
+DEFINES += _arma
 
 SOURCES += \
     ../../../../home/arash/Projects/qcustomplot/qcustomplot.cpp \
-    ../Utilities/BTC.cpp \
-    ../Utilities/BTCSet.cpp \
     ../Utilities/DistributionNUnif.cpp \
     ../Utilities/Matrix.cpp \
     ../Utilities/Matrix_arma.cpp \
@@ -40,6 +39,8 @@ HEADERS += \
     ../../../../home/arash/Projects/qcustomplot/qcustomplot.h \
     ../Utilities/BTC.h \
     ../Utilities/BTCSet.h \
+    ../Utilities/BTC.hpp \
+    ../Utilities/BTCSet.hpp \
     ../Utilities/Matrix.h \
     ../Utilities/Matrix_arma.h \
     ../Utilities/Matrix_arma_sp.h \

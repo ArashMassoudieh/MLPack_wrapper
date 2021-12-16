@@ -11,7 +11,7 @@ struct _timeseries
 {
     QString filename;
     QString name;
-    CTimeSeriesSet Data;
+    CTimeSeriesSet<double> Data;
 };
 
 namespace Ui {
@@ -25,8 +25,8 @@ class Plotter : public QMainWindow
 public:
     explicit Plotter(QWidget *parent = nullptr);
     ~Plotter();
-    bool PlotData(CBTC& BTC);
-    bool AddData(CBTC& BTC, const QCPScatterStyle::ScatterShape &symbol = QCPScatterStyle::ScatterShape::ssNone);
+    bool PlotData(CTimeSeries<double>& BTC);
+    bool AddData(CTimeSeries<double>& BTC, const QCPScatterStyle::ScatterShape &symbol = QCPScatterStyle::ScatterShape::ssNone);
     bool AddAgreementLine();
     void SetYAxisTitle(const QString& s);
 private:

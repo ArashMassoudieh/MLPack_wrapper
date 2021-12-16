@@ -107,7 +107,7 @@ bool MLPack_Wrapper::Initiate_Optimizer(int ndatacols)
     return true;
 }
 
-double MSE(CTimeSeries &y_data, CTimeSeries &y_pred)
+double MSE(CTimeSeries<double> &y_data, CTimeSeries<double> &y_pred)
 {
     return norm2(y_data-y_pred)/y_data.n;
 }
